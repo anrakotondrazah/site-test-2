@@ -74,7 +74,7 @@ export default function ComparisonSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-gray-50 overflow-hidden">
+    <section className="py-20 overflow-hidden" style={{    background: 'linear-gradient(180deg, #080f1e 0%, #0a1937 100%)'  }}>
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14">
@@ -82,11 +82,11 @@ export default function ComparisonSection() {
             <span className="w-2 h-2 bg-yellow-500 rounded-full" />
             <span className="text-yellow-700 text-xs font-semibold uppercase tracking-wider">L'avantage concurrentiel</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Pourquoi choisir <span className="gold-text">LOCAGESTION</span> ?
           </h2>
           <div className="section-divider mx-auto mb-4" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">
             Comparez les solutions et découvrez pourquoi +2000 agences et des milliers de propriétaires nous font confiance.
           </p>
         </div>
@@ -94,9 +94,14 @@ export default function ComparisonSection() {
         {/* Comparison table */}
         <div
           ref={ref}
-          className={`bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-700 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`rounded-2xl overflow-hidden transition-all duration-700 ${
+  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+}`}
+style={{ 
+  background: 'rgba(255,255,255,0.04)',
+  backdropFilter: 'blur(20px)',
+  border: '1px solid rgba(255,255,255,0.08)'
+}}
         >
           {/* Table header */}
           <div className="grid grid-cols-4 bg-[#0f2547] text-white">
@@ -119,26 +124,29 @@ export default function ComparisonSection() {
           {criteria.map((row, i) => (
             <div
               key={i}
-              className={`grid grid-cols-4 border-b border-gray-100 last:border-0 transition-all duration-500 hover:bg-blue-50/30 ${
-                visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              }`}
-              style={{ transitionDelay: `${i * 60}ms` }}
+              className={`grid grid-cols-4 last:border-0 hover:bg-white/5 transition-all duration-500 ${
+  visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+}`}
+style={{ 
+  borderBottom: '1px solid rgba(255,255,255,0.05)',
+  transitionDelay: `${i * 60}ms` 
+}}
             >
               <div className="p-4 flex items-center gap-2.5">
                 <span className="text-xl">{row.icon}</span>
-                <span className="font-semibold text-gray-800 text-sm">{row.label}</span>
+                <span className="font-semibold text-white text-sm">{row.label}</span>
               </div>
-              <div className="p-4 flex items-start gap-2 bg-green-50/50">
+              <div className="p-4 flex items-start gap-2" style={{ background: 'rgba(34,197,94,0.08)' }}>
                 <StatusIcon status={row.locagestion.status} />
-                <span className="text-sm text-gray-700 leading-snug">{row.locagestion.text}</span>
+                <span className="text-sm leading-snug" style={{ color: 'rgba(255,255,255,0.85)' }}>{row.locagestion.text}</span>
               </div>
               <div className="p-4 flex items-start gap-2">
                 <StatusIcon status={row.selfManage.status} />
-                <span className="text-sm text-gray-500 leading-snug">{row.selfManage.text}</span>
+                <span className="text-sm leading-snug" style={{ color: 'rgba(255,255,255,0.45)' }}>{row.selfManage.text}</span>
               </div>
               <div className="p-4 flex items-start gap-2">
                 <StatusIcon status={row.classical.status} />
-                <span className="text-sm text-gray-500 leading-snug">{row.classical.text}</span>
+                <span className="text-sm leading-snug" style={{ color: 'rgba(255,255,255,0.45)' }}>{row.classical.text}</span>
               </div>
             </div>
           ))}
@@ -146,14 +154,14 @@ export default function ComparisonSection() {
 
         {/* Legend */}
         <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm">
-          <div className="flex items-center gap-2"><span className="text-green-500 font-bold text-lg">✓</span><span className="text-gray-600">Inclus & optimal</span></div>
+          <div className="flex items-center gap-2"><span className="text-green-500 font-bold text-lg">✓</span><span className="text-white/50">Inclus & optimal</span></div>
           <div className="flex items-center gap-2"><span className="text-yellow-500 font-bold text-lg">⚬</span><span className="text-gray-600">Partiel ou optionnel</span></div>
           <div className="flex items-center gap-2"><span className="text-red-500 font-bold text-lg">✗</span><span className="text-gray-600">Absent ou risqué</span></div>
         </div>
 
         {/* B2B 5 pillars */}
         <div className="mt-16">
-          <h3 className="text-2xl font-black text-center text-gray-900 mb-8">
+          <h3 className="text-2xl font-black text-center text-white mb-8">
             Les 5 Piliers de l'Offre <span className="gold-text">Partenaire B2B</span>
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -164,16 +172,18 @@ export default function ComparisonSection() {
               { num: "4", title: "Outils Digitaux Avancés", desc: "Mandats automatisés, baux numériques, signature électronique.", icon: "💻" },
               { num: "5", title: "Sécurité Totale", desc: "GLI, dégradations immobilières et protection juridique.", icon: "🛡️" },
             ].map((pillar, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-              >
+              <div className="rounded-xl p-5 text-center hover:-translate-y-1 transition-all duration-300"
+  style={{ 
+    background: 'rgba(255,255,255,0.05)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255,255,255,0.08)'
+  }}>
                 <div className="text-3xl mb-3">{pillar.icon}</div>
                 <div className="w-7 h-7 rounded-full bg-[#1a3c6e] text-white text-xs font-black flex items-center justify-center mx-auto mb-2">
                   {pillar.num}
                 </div>
-                <h4 className="font-bold text-gray-900 text-sm mb-2">{pillar.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{pillar.desc}</p>
+                <h4 className="font-bold text-white text-sm mb-2">{pillar.title}</h4>
+                <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>{pillar.desc}</p>
               </div>
             ))}
           </div>
