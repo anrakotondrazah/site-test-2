@@ -80,12 +80,18 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`service-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+<div
+  ref={ref}
+  className={`service-card rounded-2xl overflow-hidden transition-all duration-700 ${
+    visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+  }`}
+  style={{ 
+    background: 'rgba(255,255,255,0.05)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    transitionDelay: `${index * 80}ms`
+  }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -103,23 +109,21 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       </div>
 
       {/* Content */}
-      <div className="p-5">
-        <h3 className="font-bold text-gray-900 text-base mb-2 leading-snug">{service.title}</h3>
-        <p className="text-gray-500 text-sm leading-relaxed mb-4">{service.desc}</p>
-
-        {/* Features */}
-        <ul className="space-y-1.5">
-          {service.features.map((f, i) => (
-            <li key={i} className="flex items-center gap-2 text-xs text-gray-600">
-              <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: service.color }}>
-                <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              {f}
-            </li>
-          ))}
-        </ul>
+<div className="p-5">
+  <h3 className="font-bold text-white text-base mb-3 leading-snug">{service.title}</h3>
+  <ul className="space-y-2">
+    {service.features.slice(0, 2).map((f, i) => (
+      <li key={i} className="flex items-center gap-2 text-xs" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" 
+          style={{ background: service.color }}>
+          <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        {f}
+      </li>
+    ))}
+  </ul>
 
         {/* CTA */}
         <div className={`mt-4 transition-all duration-300 ${hovered ? "opacity-100 max-h-10" : "opacity-0 max-h-0"} overflow-hidden`}>
@@ -137,19 +141,20 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="py-20" style={{    background: 'linear-gradient(135deg, #0a1937 0%, #0f2547 100%)'  }}>
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-4">
-            <span className="w-2 h-2 bg-blue-600 rounded-full" />
-            <span className="text-blue-700 text-xs font-semibold uppercase tracking-wider">Nos Pôles d'Expertise</span>
+<div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4" 
+  style={{ background: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.3)' }}>
+  <span className="w-2 h-2 rounded-full" style={{ background: '#c9a84c' }} />
+  <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#c9a84c' }}>Nos Pôles d'Expertise</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Nos <span className="gold-text">Services</span> Complets
           </h2>
           <div className="section-divider mx-auto mb-4" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">
             De la mise en location au recouvrement, en passant par la comptabilité et la maintenance technique — 
             une gestion intégrale pour une tranquillité d'esprit totale.
           </p>
